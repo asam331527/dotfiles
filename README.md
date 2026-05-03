@@ -82,6 +82,19 @@ ls -la
 - `git diff` shows actual configuration changes
 - `git push` syncs everything without extra copy steps
 
+### Quick Install (One-Liner)
+
+If you already have Homebrew and Git installed:
+
+```zsh
+brew install starship && \
+git clone https://github.com/asam331527/dotfiles.git ~/dotfiles && \
+mkdir -p ~/.config && \
+ln -sf ~/dotfiles/.zshrc ~/.zshrc && \
+ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml && \
+source ~/.zshrc
+```
+
 ## Prompt Features
 
 - **Full directory path** — never truncated, `~` for home
