@@ -13,20 +13,28 @@ This repository contains the shell and prompt configuration for a developer-frie
 
 ## Quick Start (New Machine)
 
-```zsh
-# Clone the repo
-git clone https://github.com/asam331527/dotfiles.git ~/dotfiles
+Use symlinks so edits in the repo are live immediately without manual copying:
 
-# Install Starship
+```zsh
+# 1. Install Starship
 brew install starship
 
-# Copy configuration files
-cp ~/dotfiles/.zshrc ~/
-cp ~/dotfiles/starship.toml ~/.config/
+# 2. Clone the repo
+git clone https://github.com/asam331527/dotfiles.git ~/dotfiles
 
-# Reload shell
+# 3. Back up existing configs (optional but safe)
+mv ~/.zshrc ~/.zshrc.bak.$(date +%Y%m%d) 2>/dev/null
+mv ~/.config/starship.toml ~/.config/starship.toml.bak.$(date +%Y%m%d) 2>/dev/null
+
+# 4. Symlink the config files
+ln -sf ~/dotfiles/.zshrc ~/.zshrc
+ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+
+# 5. Reload shell
 source ~/.zshrc
 ```
+
+**Why symlinks?** Edit once in `~/dotfiles` and changes are live. `git diff` shows real changes, and `git push` syncs without extra `cp` steps.
 
 ## Prompt Features
 
@@ -56,14 +64,13 @@ source ~/.zshrc
 
 ## Keeping in Sync
 
-After making local changes:
+With symlinks, edit directly in `~/dotfiles` and commit:
 
 ```zsh
 cd ~/dotfiles
-cp ~/.zshrc . && cp ~/.config/starship.toml .
-git add -A
-git commit -m "Update config"
-git push
+# edit .zshrc or starship.toml
+git diff
+git add -A && git commit -m "Update config" && git push
 ```
 
 ## Dependencies
