@@ -11,30 +11,76 @@ This repository contains the shell and prompt configuration for a developer-frie
 | `starship-setup.md` | Detailed documentation for the Starship prompt |
 | `REMOTE_SETUP.md` | Guide for syncing this repo to a remote server |
 
-## Quick Start (New Machine)
+## Requirements
 
-Use symlinks so edits in the repo are live immediately without manual copying:
+- macOS with zsh (default on macOS)
+- [Homebrew](https://brew.sh/) installed
+- Git
+
+## Installation
+
+### Step 1: Install Starship
 
 ```zsh
-# 1. Install Starship
 brew install starship
+```
 
-# 2. Clone the repo
+### Step 2: Clone this repository
+
+```zsh
 git clone https://github.com/asam331527/dotfiles.git ~/dotfiles
+```
 
-# 3. Back up existing configs (optional but safe)
+### Step 3: Back up existing configs (optional but recommended)
+
+```zsh
 mv ~/.zshrc ~/.zshrc.bak.$(date +%Y%m%d) 2>/dev/null
 mv ~/.config/starship.toml ~/.config/starship.toml.bak.$(date +%Y%m%d) 2>/dev/null
+```
 
-# 4. Symlink the config files
+### Step 4: Symlink the configuration files
+
+Using symlinks ensures any edits in `~/dotfiles` are immediately active in your shell.
+
+```zsh
 ln -sf ~/dotfiles/.zshrc ~/.zshrc
 ln -sf ~/dotfiles/starship.toml ~/.config/starship.toml
+```
 
-# 5. Reload shell
+### Step 5: Reload your shell
+
+```zsh
 source ~/.zshrc
 ```
 
-**Why symlinks?** Edit once in `~/dotfiles` and changes are live. `git diff` shows real changes, and `git push` syncs without extra `cp` steps.
+### Step 6: Verify the installation
+
+Navigate to a directory and check that the full path appears:
+
+```zsh
+cd /tmp
+# Prompt should show: /tmp ❯
+```
+
+Enter a git repository and confirm branch/status display:
+
+```zsh
+cd ~/dotfiles
+# Prompt should show: ~/dotfiles on  main ❯
+```
+
+Test color-coded file listing:
+
+```zsh
+ls -la
+# Directories should appear in a different color than files
+```
+
+### Why symlinks?
+
+- Edit once in `~/dotfiles` and changes are live immediately
+- `git diff` shows actual configuration changes
+- `git push` syncs everything without extra copy steps
 
 ## Prompt Features
 
